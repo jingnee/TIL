@@ -63,13 +63,25 @@ setenforce는 reboot되면 원래대로 돌아오기 때문에 vi /etc/selinux/c
 
 
 
-![]()
+![](pic\chrony.conf_edit.PNG)
 
-![]()
+> /etc/chrony.conf 파일 수정 모습
+>
+> NTP Client 구성
 
-![]()
+![](pic\chronyc.PNG)
+
+> NTP 서버가 소스로 사용하는 세대의 NTP 서버 정보를 받아오고 있는지 확인한다.
 
 
+
+```shell
+# vi /etc/hosts
+```
+
+![](pic\etc_hosts.PNG)
+
+>  /etc/hosts파일 수정
 
 ### Openstack repository 등록
 
