@@ -63,13 +63,13 @@ setenforce는 reboot되면 원래대로 돌아오기 때문에 vi /etc/selinux/c
 
 
 
-![](chrony.conf_edit.PNG)
+![](./pic/chrony.conf_edit.PNG)
 
 > /etc/chrony.conf 파일 수정 모습
 >
 > NTP Client 구성
 
-![](chronyc.PNG)
+![](./pic/chronyc.PNG)
 
 > NTP 서버가 소스로 사용하는 세대의 NTP 서버 정보를 받아오고 있는지 확인한다.
 
@@ -79,7 +79,7 @@ setenforce는 reboot되면 원래대로 돌아오기 때문에 vi /etc/selinux/c
 # vi /etc/hosts
 ```
 
-![](etc_hosts.PNG)
+![](./pic/etc_hosts.PNG)
 
 >  /etc/hosts파일 수정
 
@@ -139,7 +139,7 @@ Glance, Cinder, Neutron, Swift 등 설치되어 있는지 확인
 
 대략 20~30분 정도 걸린다.
 설치가 완료되면
-![](install.png)
+![](./pic/install.png)
 화면이 뜨고 나와있는 주소를 인터넷으로 들어가보면
-![](openstackhp.PNG)
+![](./pic/openstackhp.PNG)
 창이 뜨는것을 볼 수 있다.
