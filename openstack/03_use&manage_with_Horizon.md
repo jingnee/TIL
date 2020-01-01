@@ -48,7 +48,7 @@
 
 
 
-![](.\pic\stack1_login.PNG)								stack1으로 로그인![](C:\Users\HPE\TIL\openstack\pic\stack1_menu.PNG)
+![](.\pic\stack1_login.PNG)							stack1으로 로그인![](.\pic\stack1_menu.PNG)
 
 
 
@@ -225,6 +225,8 @@ DBsg의 `규칙관리`클릭 >> **`+규칙추가`** 버튼 클릭
 
 ![](.\pic\instance3.PNG)
 
+**사진에서는 a.tiny를 넣었는데 a.nano넣었습니다!! (사진잘못올림)**
+
 ![](.\pic\instance4.PNG)
 
 ![](.\pic\instance5.PNG)
@@ -269,17 +271,33 @@ DBsg의 `규칙관리`클릭 >> **`+규칙추가`** 버튼 클릭
 >
 > ip a 명령어를 입력해서 ip잘 연결되어 있는지 확인
 
-![](.\pic\콘솔창.PNG)
-
-> free와 lsblk 명령어로 메모리와 디바이스 확인할 수 있다.
-
-
-
 
 
 ## 11. Volume/snapshot 생성 -> ES cinder(AWS에서 EBS)
 
 `볼륨` >> `볼륨`>> **`+볼륨 생성`** 버튼 클릭
+
+![](.\pic\볼륨생성.PNG)
+
+> 'vol1'이라는 이름으로 볼륨을 생성해 줍니다. (Status가 Available한것을 확인)
+>
+> 그리고 오른쪽에 있는 볼륨편집 옆에 드롭다운 버튼을 클릭해서 '볼륨 연결 관리'를 클릭해줍니다.
+
+![](.\pic\볼륨연결관리.PNG)
+
+> **10번**에서 만들어 줬던 class_instance와 연결해줍니다.
+
+![](.\pic\볼륨연결.PNG)
+
+> 'vol1' 볼륨이 class_instance와 연결된것을 볼 수 있습니다. 위치 /dev/vdb확인 >>콘솔에서 디스크 추가된 모습을 볼 수 있음
+
+![](.\pic\콘솔창.PNG)
+
+> free와 lsblk 명령어로 메모리와 디바이스 확인할 수 있다.
+>
+> lsblk에서 vdb가 추가된 것을 볼 수 있다.
+
+
 
 ## 12. Object storage 사용
 
@@ -287,35 +305,21 @@ DBsg의 `규칙관리`클릭 >> **`+규칙추가`** 버튼 클릭
 
 
 
+---
 
 
 
+이제 가상 서버를 만드는것은 완성했고, 이제 원격으로 Windows의 Xshell을 이용해서 ssh로 접속해보려고 한다.
+
+내가 만든 네트워크 두개중에서 외부와 통신이 가능한 네트워크는 'ext1'이었고 거기서 인스턴스가 올라간 유동IP주소는 10.0.0.212였다.
 
 
 
+(사진 나중에 추가할것) (이때 당연히 VM으로 openstack controller 서버를 켜놔야 한다.)
 
-
-
-
-
-
-
-
-ssh cirros@10.0.0.212 접속 안돼
-
-ip netns에서 qrouter
-
-ip netns exec qrouter-eb81aad4-7db5-4bdc-8fbe-258215cb4854 ssh cirros@10.0.0.212
-
-
-
-
-
-
-
-
-
-
-
-
+```shell
+# ssh cirros@10.0.0.212					//접속 안됨
+# ip netns					// 입력해서 qrouter부터 괄호전까지 복사
+# ip netns exec [qrouter-...[아까 복사한내용 붙여넣기]] ssh cirros@10.0.0.212	//로그인성공!
+```
 

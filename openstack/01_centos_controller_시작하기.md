@@ -1,6 +1,58 @@
-# CentOs Controller 시작하기
+# CentOs 에서 Controller 시작하기
 
-설치 후에
+- #### 시작하기전에
+
+***
+
+##### CentOS iso 다운로드  [centos iso](http://www.centos.org)
+
+<가상화 머신은 둘중에 하나 아무거나 다운로드(나는 VM깜)>
+
+##### Virtual Box 다운로드 [virtual box](http://virtualbox.org)
+
+##### Vmware player 다운로드 [vmware](http://vmware-player.kr.uptodown.com/)
+
+[컨트롤러 시스템 사양]
+
+| 컨트롤러 시스템 | 하드웨어 스팩        |
+| --------------- | -------------------- |
+| root Disk       | 100 G                |
+| memory          | 4G ~ 8G              |
+| Network         | **NAT** or Bridged   |
+| Host key        | ctrl + alt           |
+| CD/DVD          | iso path 설정        |
+| CPU             | 프로세서 당 core 2개 |
+
+- openstack에서 기본 Hypervisor로 KVM을 사용하며 KVM기반 VM을 시작하기 위해서 반드시 **CPU 가상 모드**를 활성화 하여야 합니다.
+
+  (Vmware >> Settings >> Hardware >> Processors클릭 >> 우측에 Virtualization engine에서 두번째 체크박스 클릭(Virtualize Intel VT-x/EPT or AMD-V/RVI))
+
+- Iso 파일도 매핑 시켜줘야함
+
+  (Vmware >> Settings >> Hardware >> CD/DVD(IDE)클릭 >> 우측에 Connection에서 Use ISO image file에서 다운받은 이미지경로 연결)
+
+그 이후 설치해주면 된다.
+
+ - 소프트웨어 : 최소 설치
+
+ - NETWORK & HOST NAME 
+
+   : Edit>Virtual Network Editor 에서
+   네트워크 정적으로 할당
+   change settings 를 눌러서
+   NAT 네트워크 추가되면
+   10.0.0.0 /24 gateway : 10.0.0.2
+   아래에 게이트웨이 주소 복사
+
+   Host name은 Controller로 변경하고 이더넷 연결 킴
+
+-  root 암호 설정 (나는 abc123으로 설정)
+
+***
+
+
+
+설치 후에 (centOS가 최신 버전으로 업데이트)
 
 ```shell
 # yum repolist						// 인터넷 되는지 확인
@@ -97,7 +149,9 @@ setenforce는 reboot되면 원래대로 돌아오기 때문에 vi /etc/selinux/c
 
 
 
-### Packstack 설치
+## 자동화 툴을 이용한 오픈스택 설치 (Redhat Solutions-Packstack)
+
+### Packstack 설치 (소규모 오픈스택에 적합 -- 대규모 foreman)
 
 ```shell
 # yum install -y openstack-packstack*
