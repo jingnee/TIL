@@ -10,7 +10,7 @@ C밑에 share라는 폴더를 만들고 그 안에 개인키 (나는 `user1-key1
 
 ### 2. 만든 공유폴더를 VM과 연결해준다.
 
-![](.\pic\share폴더연결.PNG)
+![](./pic/share폴더연결.PNG)
 
 VM >> Settings 를 누르면 오른쪽과 같은 창이 뜨는데
 
@@ -29,13 +29,13 @@ Options에서 Shared Folders클릭
 # df -h							//메모리 확인
  ```
 
-![](C:\Users\HPE\TIL\openstack\pic\df-h.PNG)
+![](./pic/df-h.PNG)
 
 > 맨 아래 vmhgfs-fuse가 /mnt/hgfs에 붙은것을 볼 수 있다. 
 >
 > 그곳에 이동하면 `share`폴더가 보임
 
-![](C:\Users\HPE\TIL\openstack\pic\share내용.PNG)
+![](./pic/share내용.PNG)
 
 > share 폴더안에 1번에서 저장했던  `user1-key1.pem`키를 볼 수 있다.
 
@@ -47,7 +47,7 @@ Options에서 Shared Folders클릭
 
 앞에서 했던대로 접속하면 오류뜨는것을 볼 수 있다. 그래서 루트로 개인키를 복사해서 권한을 777에서 600으로 변화시켜준다음 root에서 접속한다.
 
-![](C:\Users\HPE\TIL\openstack\pic\auth.PNG)
+![](./pic/auth.PNG)
 
 앞과 다른건 ssh 다음에 키로 인증하겠다는 의미의 옵션[-i]를 붙여주고 키이름을 붙인다.
 
@@ -125,13 +125,13 @@ CLI로 demo user 만들어주기
 
 user1, stack1, demo의 keystonesetting 파일을 만들어 준다. <<demo빼고 대쉬보드에서 만들었던 유저들
 
-![](C:\Users\HPE\TIL\openstack\pic\stack1_keystone만ㄷ르기.PNG)
+![](./pic/stack1_keystone만ㄷ르기.PNG)
 
-![](C:\Users\HPE\TIL\openstack\pic\stack1_keystone.PNG)
+![](./pic/stack1_keystone.PNG)
 
 stack1에 맞게 바꿔준 파일(user1이나 demo의 프로젝트이름이랑 유저명에 맞게 파일 수정 )
 
-![](C:\Users\HPE\TIL\openstack\pic\demo_openstack_token.PNG)
+![](./pic/demo_openstack_token.PNG)
 
 > . 으로 프롬프트 변경해주고
 >
