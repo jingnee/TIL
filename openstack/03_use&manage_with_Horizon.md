@@ -315,11 +315,20 @@ DBsg의 `규칙관리`클릭 >> **`+규칙추가`** 버튼 클릭
 
 
 
-(사진 나중에 추가할것) (이때 당연히 VM으로 openstack controller 서버를 켜놔야 한다.)
+(이때 당연히 VM으로 openstack controller 서버를 켜놔야 한다.)
 
-```shell
-# ssh cirros@10.0.0.212					//접속 안됨
-# ip netns					// 입력해서 qrouter부터 괄호전까지 복사
-# ip netns exec [qrouter-...[아까 복사한내용 붙여넣기]] ssh cirros@10.0.0.212	//로그인성공!
-```
+![](.\pic\instance_active.PNG)
 
+instance Status가 **Active** 임을 반드시 확인! (우리는 이스턴스가 올라간 Floating IP에 접속할거야)
+
+![](C:\Users\HPE\TIL\openstack\pic\ssh_cirros_login.PNG)
+
+> 처음에 ssh로 바로 접속하려니 접속이 안되는 것을 볼 수 있다. 
+>
+> 그래서 ip netns 명령어를 통해 qrouter~~부분을 복사해서
+>
+> ip netns exec 뒤에 붙여넣은다음 ssh cirros@10.0.0.212로 접속하고
+>
+> 비밀번호(**cubswin:)**)입력하면 프롬프트가 **$**로 변경된것을 볼 수 있다.
+>
+> 이렇게 나오면 로그인 성공!
