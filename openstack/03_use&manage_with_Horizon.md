@@ -215,13 +215,17 @@ DBsg의 `규칙관리`클릭 >> **`+규칙추가`** 버튼 클릭
 
 
 
-## 10. Instance 생성 -> Compute service
+## 10. Instance 생성(VM) -> Compute service
 
 `Compute` >> `인스턴스` >> **`+ 인스턴스시작`** 버튼 클릭
 
 ![](.\pic\instance1.PNG)
 
 ![](.\pic\instance2.PNG)
+
+>  새로운 볼륨 생성 : Cinder 사용
+>
+> 새로운 볼륨 생성 아니오 : Nova 사용
 
 ![](.\pic\instance3.PNG)
 
@@ -279,9 +283,9 @@ DBsg의 `규칙관리`클릭 >> **`+규칙추가`** 버튼 클릭
 
 ![](.\pic\볼륨생성.PNG)
 
-> 'vol1'이라는 이름으로 볼륨을 생성해 줍니다. (Status가 Available한것을 확인)
+> 'vol1'이라는 이름으로 볼륨을 생성. (Status가 Available한것을 확인)
 >
-> 그리고 오른쪽에 있는 볼륨편집 옆에 드롭다운 버튼을 클릭해서 '볼륨 연결 관리'를 클릭해줍니다.
+> 그리고 오른쪽에 있는 볼륨편집 옆에 드롭다운 버튼을 클릭해서 '볼륨 연결 관리'를 클릭한다.
 
 ![](.\pic\볼륨연결관리.PNG)
 
@@ -290,6 +294,18 @@ DBsg의 `규칙관리`클릭 >> **`+규칙추가`** 버튼 클릭
 ![](.\pic\볼륨연결.PNG)
 
 > 'vol1' 볼륨이 class_instance와 연결된것을 볼 수 있습니다. 위치 /dev/vdb확인 >>콘솔에서 디스크 추가된 모습을 볼 수 있음
+>
+> 볼륨 드롭다운버튼에서 스냅샷 생성가능
+>
+> 스냅샷(현재의 볼륨 기억하고) 만든 스냅샷의 볼륨생성해주면 똑같은 볼륨이 생긴다
+>
+> 스냅샷 왜하는거야? 나중에 볼륨이 손상되면 그때 스냅샷 찍어서 저장했던 볼륨을 이용해서 복구할 수 있어!
+>
+> (백업용도!) instance도 스냅샷이 가능하다. << 인스턴스는 root Disk 이미지를 백업하는 용도야
+>
+> 인스턴스에서 스냅샷 생성되면 자동으로 이미지 칸으로 넘어감
+
+
 
 ![](.\pic\콘솔창.PNG)
 
@@ -299,7 +315,21 @@ DBsg의 `규칙관리`클릭 >> **`+규칙추가`** 버튼 클릭
 
 
 
-## 12. Object storage 사용
+## 12. Object storage 사용 -> (AWS에서 S3)
+
+컨테이너 : AWS에서 버킷
+
+`네트워크` >> `오브젝트 스토리지` >> `컨테이너` >> **`+ 컨테이너`** 버튼 클릭
+
+![](C:\Users\HPE\TIL\openstack\pic\container.PNG)
+
+> 개인용 'c1'과 공용 'c2' 컨테이너 생성
+
+![](C:\Users\HPE\TIL\openstack\pic\container-file_LI.jpg)
+
+> c1을 클릭하고 이름폴더 그안에 download폴더만들고 cirros이미지 업로드해본다.
+>
+> 마치 윈도우즈 파일관리하는것과 비슷!
 
 
 
@@ -319,7 +349,7 @@ DBsg의 `규칙관리`클릭 >> **`+규칙추가`** 버튼 클릭
 
 ![](.\pic\instance_active.PNG)
 
-instance Status가 **Active** 임을 반드시 확인! (우리는 이스턴스가 올라간 Floating IP에 접속할거야)
+instance Status가 **Active** 임을 반드시 확인! (우리는 인스턴스가 올라간 Floating IP에 접속할거야)
 
 ![](C:\Users\HPE\TIL\openstack\pic\ssh_cirros_login.PNG)
 
@@ -332,3 +362,22 @@ instance Status가 **Active** 임을 반드시 확인! (우리는 이스턴스�
 > 비밀번호(**cubswin:)**)입력하면 프롬프트가 **$**로 변경된것을 볼 수 있다.
 >
 > 이렇게 나오면 로그인 성공!
+
+
+
+
+
+#### Pets and Cattle
+
+== on-premise & cloud
+
+클라우드는 인스턴스가 고장나면 그냥 스냅샷을 복구해서 사용하고 이전의 인스턴스는 지워 그렇게 관리해
+
+--> 클라우드에서 스냅샷 뜨는 것이 중요한 이유!
+
+온프레미스는 고장난 로그 확인하면서 다 고쳐
+
+
+
+#### scale out, scale in, scale up
+
