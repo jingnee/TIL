@@ -12,7 +12,7 @@
 
 링크를 복사한 다음 Xshell에서 wget명령어를 이용해서 다운받아준다.
 
-**wget 명령어가 안되면 yum install -y wget 로 wget먼저 다운받아 준다. **
+** wget 명령어가 안되면 yum install -y wget 로 wget먼저 다운받아 준다. **
 
 
 
@@ -22,15 +22,17 @@
 
 ![](./pic/stack1_keystone_변경.PNG)
 
-그리고 openstack~ 명령어를 통해서 'cirros-vmdk'라는 이름으로 이미지를 만들어서 올린다.(등록하는거야)
 
 ![](./pic/wget다운.PNG) 
 
+그리고 openstack~ 명령어를 통해서 'cirros-vmdk'라는 이름으로 이미지를 만들어서 올린다.(등록하는거야)
 ![](./pic/image_create.PNG)
+```
+openstack image create "cirros-vmdk" --file /root/cirros-0.3.5-86_64-disk.
 
 > --file : file 이미지를 root에 다운받아놓은 cirros image로 설정하고(나는 vmdk로 컨버트해줌)
 >
-> qemu-img convert -O vmdk cirros-0.3.5-x86_64-disk.img cirros-0.3.5-x86_64-disk.vmdk
+> qemu-img convert -O vmdk cirros-0.3.5-x86_64-disk.img cirros-0.3.5-x86_64-disk.vmdk --disk-format vmdk --container-format bare
 >
 > (명령어로 img 파일을 vmdk로 컨버트 시켜줬다.)
 >
