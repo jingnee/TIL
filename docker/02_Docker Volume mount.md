@@ -166,3 +166,18 @@ mongoDB 3대 설치 (Primary *1, Secontary *2)
 
 
 
+
+
+
+
+
+
+
+
+
+
+ip주소 아는 명령어
+
+ifconfig
+ip addr show
+hostname -i
