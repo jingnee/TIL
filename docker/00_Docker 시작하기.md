@@ -55,7 +55,7 @@ $ docker container run -d -p 9000:8080 gihyodocker/echo:latest
 
 웹에서 접속하거나,
 
-![](E:\TIL\docker\pic\docker시작.png)
+![](./pic/docker시작.jpg)
 
 powershell을 하나 더 띄워서 curl로 접속할 수도 있다.
 
@@ -63,12 +63,12 @@ powershell을 하나 더 띄워서 curl로 접속할 수도 있다.
 $ curl http://localhost:9000/
 ```
 
-![](E:\TIL\docker\pic\dockercurl.png)
+![](./pic/dockercurl.png)
 
 만약에! curl : Internet Explorer 엔진을 사용할 수 없거나 Internet Explorer의 최초 실행 구성이 완전하지 않아 응답 콘텐츠를 구문
 분석할 수 없습니다. UseBasicParsing 매개 변수를 지정하고 다시 시도하십시오.
 
-![](E:\TIL\docker\pic\curl오류.png)
+![](./pic/curl오류.png)
 
 이런 오류가 뜬다면 그냥 Internet explorer를 한번 켜보고 다시 시도해보자
 
@@ -119,11 +119,11 @@ app.listen(8080, () => {
 
 저장한 다음 쉘에서 자바스크립트 패키지 매니저인 npm을 설치해주고, 서비스를 구동한다.
 
-![](E:\TIL\docker\pic\npminstall.png)
+![](./pic/npminstall.jpg)
 
 npm install을 통해 npm을 설치해주고 start 명령어로 서비스를 구동하면 내가 설정했던 8080포트를 받고있다는 콘솔로그가 나온다.
 
-![](E:\TIL\docker\pic\npm화면.png)
+![](./pic/npm화면.png)
 
 웹에서도 접속가능한것을 볼 수 있다.
 
@@ -176,21 +176,21 @@ run은 실행 명령어인데, 만약 설치되지않았으면 설치를 진행�
 
 -p 옵션은 9000번이라는 포트로 연결하겠다는 옵션이다. (포트포워딩 하겠다는 뜻이야)
 
-![](E:\TIL\docker\pic\build.png)
+![](./pic/build.png)
 
 build를 하면 내가 dockerfile에 입력했던 명령어들에 각 스텝으로 실행되는것을 볼 수 있다.
 
 이미지를 빌드하고나서 docker image ls 명령어 또는 docker images 명령어를 통해 현재 만들어진 이미지들을 볼 수 있다.
 
-![](E:\TIL\docker\pic\image ls.png)
+![](./pic/image ls.png)
 
-![](E:\TIL\docker\pic\images.png)
+![](./pic/images.png)
 
 > image ls와 images는 같은 내용을 보여주는것을 볼 수 있다.
 
 
 
-![](E:\TIL\docker\pic\dockerun.png)
+![](./pic/dockerun.png)
 
 -d (demon)으로 실행했기 때문에 powershell에서 서버가 동작하고 있는 모습이 보이지않고 바로 프롬프트가 나온다(사진에서는 잘림)
 
@@ -211,7 +211,7 @@ $ docker push jingnee/simpleweb:latest
 $ docker pull jingnee/simpleweb:latest
 ```
 
-![](E:\TIL\docker\pic\dockerhubpush.png)
+![](./pic/dockerhubpush.png)
 
 push 하고 허브사이트에 접속하면 내가 몇초전에 올린 `jingnee/simpleweb` image가 등록된것을 볼 수 있다.
 
