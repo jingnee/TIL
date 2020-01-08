@@ -20,7 +20,7 @@
 
 두번정도 재부팅되고 docker가 **running** 되는것을 확인
 
-shared Drive에서 디스크하나 연결해준다.
+shared Drive에서 디스크하나 연결해준다. (왠만하면 C드라이브에 연결하는게 좋음)
 
 
 
@@ -119,9 +119,17 @@ app.listen(8080, () => {
 
 저장한 다음 쉘에서 자바스크립트 패키지 매니저인 npm을 설치해주고, 서비스를 구동한다.
 
-<<<<<<<<<<<<<npm install 화면>>>>>>>>>>>>>>>>>>>>>>>>>
+![](E:\TIL\docker\pic\npminstall.png)
 
-#### 3.2 Dockerfile 만들기
+npm install을 통해 npm을 설치해주고 start 명령어로 서비스를 구동하면 내가 설정했던 8080포트를 받고있다는 콘솔로그가 나온다.
+
+![](E:\TIL\docker\pic\npm화면.png)
+
+웹에서도 접속가능한것을 볼 수 있다.
+
+
+
+### 4. Dockerfile 만들기
 
 이제 이걸 도커파일로 만들어 보려고 한다. code . 입력해서 visual code 켜준 다음 `Dockerfile`을 만든다. 파일을 만들기 전에 vscode에서 왼쪽 `Extension`에서 Docker를 다운로드 해준다.
 
@@ -134,37 +142,67 @@ RUN npm install
 CMD ["npm","start"]
 ```
 
+FROM을 통해서 alpine(엄청작은 리눅스)이라는 베이스 이미지를 hub.docker에서 받아온다.
+
 WORKDIR은 현재 디렉토리를 변경해준다.
 
 COPY는 윈도우에 있는 파일을 리눅스 컨테이너로 넣게 해준다.
-
-FROM을 통해서 alpine(엄청작은 리눅스)이라는 베이스 이미지를 설치해주고
 
 RUN으로 npm 설치를 해준 다음
 
 CMD 에 들어가있는 인자값이 커맨드 명령어로 들어가게 한다.
 
-#### 3.3 image 빌드 및 실행
+
+
+### 5. image 빌드 및 실행
 
 Dockerfile을 통해 이미지를 만들었으니, 이제 빌드하고 실행해보자.
 
 ```shell
-$  docker build -t jingnee/simpleweb:latest .
+$ docker build -t jingnee/simpleweb:latest .
 $ docker image ls			//설치된 이미지 보기
-$ docker run -d -p 9000:8080 jingnee/simple:latest
+$ docker run -d -p 8000:8080 jingnee/simpleweb:latest
 ```
+
+-t 옵션으로 이미지명을 지정한다. :뒤에는 태그명인데, 선택사항(default latest)
+
+나는 push작업도 해볼것이기 때문에 내 계정이름이 들어간 이미지명으로 만들어주었다.(jingnee/simpleweb) 이미지명 없이 빌드할 수도 있지만 이미지 아이디를 해쉬값으로 구분해야 하기 때문에 번거로울 수 있다.
+
+. 은 현재디렉토리에 있는 Dockerfile을 이용해 이미지를 만들겠다는 뜻이다.
 
 run은 실행 명령어인데, 만약 설치되지않았으면 설치를 진행하고 실행한다.
 
 -d 는 demon으로 백그라운드로 실행하게 해준다.
 
--p 옵션은 9000번이라는 포트로 연결하겠다는 옵션이다.
+-p 옵션은 9000번이라는 포트로 연결하겠다는 옵션이다. (포트포워딩 하겠다는 뜻이야)
 
-#### 3.3 웹 확인
+![](E:\TIL\docker\pic\build.png)
+
+build를 하면 내가 dockerfile에 입력했던 명령어들에 각 스텝으로 실행되는것을 볼 수 있다.
+
+이미지를 빌드하고나서 docker image ls 명령어 또는 docker images 명령어를 통해 현재 만들어진 이미지들을 볼 수 있다.
+
+![](E:\TIL\docker\pic\image ls.png)
+
+![](E:\TIL\docker\pic\images.png)
+
+> image ls와 images는 같은 내용을 보여주는것을 볼 수 있다.
 
 
 
-### 4. 이미지 업로드 및 다운로드
+![](E:\TIL\docker\pic\dockerun.png)
+
+-d (demon)으로 실행했기 때문에 powershell에서 서버가 동작하고 있는 모습이 보이지않고 바로 프롬프트가 나온다(사진에서는 잘림)
+
+포트포워딩했던 8000번으로 접속가능한것을 볼 수 있다.
+
+
+
+**도커파일 왜쓰는거야?** 도커에서 이미지를 생성하기 위해서는 꼭 도커파일을 사용해야 한다. 도커파일은 이미지파일을 만드는 파일이다!
+
+
+
+### 6. 이미지 업로드 및 다운로드
 
 hub.docker 사이트에 내가 만든 이미지를 업로드 하거나 나또는 남의 이미지를 원격에서 다운받아 올 수 있다.
 
@@ -173,79 +211,8 @@ $ docker push jingnee/simpleweb:latest
 $ docker pull jingnee/simpleweb:latest
 ```
 
-<<<<<<<<<<<<<docker hub 화면>>>>>>>>>>>>>>>>>>>>>>>>>
+![](E:\TIL\docker\pic\dockerhubpush.png)
 
+push 하고 허브사이트에 접속하면 내가 몇초전에 올린 `jingnee/simpleweb` image가 등록된것을 볼 수 있다.
 
-
----
-
-### docker 기본 명령어
-
-```shell
-$ docker ps [-a]
-```
-
-현재 작동중인 프로세스 보여줌. 옵션 [-a]가 붙으면 중지된 프로세스도 보여줌
-
-```shell
-$ docker stop myweb1
-```
-
-myweb1이라고 지정한 컨테이너 중지(myweb1대신에 ps에서 보여진 container ID입력해도 됨)
-
-container ID를 `space`간격으로 여러개 입력해서 한번에 중지도 가능(rm 도 가능)
-
-또는 container ID에서 고유넘버 앞 두자리만 입력해도 가능
-
-```shell
-$ docker rm myweb1
-```
-
-중지한 컨테이너 삭제 (rm전에 stop이 선행되어야 한다! 마찬가지로 container ID를 입력해도됨)
-
-```shell
-$ docker container prune
-```
-
-중지된 컨테이너가 많을때 중지된 프로세스 모두 삭제
-
-```shell
-$ docker stop c0ce705bc020 & docker rm c0ce705bc020
-```
-
- 중지와 삭제 동시에하는 명령어
-
-근데 파워쉘에서는 에러로 안됨 다른곳에서는 가능!
-
-```shell
-$ docker stop $(docker ps -q)	
-```
-
-아이디 지정해서 중지하는것도 귀찮아
-
-$ docker ps -q를 입력하면 현재 돌고있는 프로세스 아이디 가져오는 명령어 (rm에서는 qa)
-
-```shell
-$ 
-```
-
-
-
-```shell
-$ 
-```
-
-
-
-```shell
-$ 
-```
-
- 
-
-```shell
-$ 
-```
-
-
-
+pull을 통해 받아오는것도 가능하다. 당연히 내가아닌 다른 누구의 것이라도 받아올 수 있다. 처음에 gihyodocker/echo:latest를 받아왔었다.
