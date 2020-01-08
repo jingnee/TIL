@@ -6,7 +6,7 @@ $ docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mysql mys
 
 mysql이 없기 때문에 run 명령을 실행하면 mysql을 찾아와서 생성하고 실행해준다.
 
-![](E:\TIL\docker\pic\mysql설치.png)
+![](./pic/mysql설치.png)
 
 -e MYSQL_ALLOW_EMPTY_PASSWORD=true 옵션은 비밀번호를 설정하지 않는다는 뜻이다.
 
@@ -25,7 +25,7 @@ docker images 를 통해 잘 설치되었는지 확인하고 mysql에 접속해�
 # mysql -uroot -p
 ```
 
-![](E:\TIL\docker\pic\mysql접속.png)
+![](./pic/mysql접속.png)
 
 비밀번호는 설정하지 않았으니 그냥 `Enter`를 누르면 mysql>로 프롬프트가 변경된것을 볼 수 있다.
 
