@@ -180,7 +180,13 @@ mysql> select * from user;
 
 
 
+컨테이너 실행하는 명령어에서
 
+![](E:\TIL\docker\pic\volume_test5.jpg)
 
+이 명령어는 다음처럼 풀어쓴것과 같다.
 
+![](E:\TIL\docker\pic\volume_test4.png)
+
+컨테이너 실행 명령어에서 종종 한줄에 합쳐 쓰므로 알아두는것이 좋다.
 
