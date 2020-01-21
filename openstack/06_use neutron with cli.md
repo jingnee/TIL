@@ -87,7 +87,7 @@ $ openstack network agent list
 
 #### 모두 웃고 있지 않을때!
 
-![](./pic/network agent list안됨.png)
+![](./pic/network agent list안됨.png) 
 
 만약 이렇게 XXX뜨는게 있으면
 
