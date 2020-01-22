@@ -4,10 +4,6 @@
 
 
 
-
-
-
-
 - 알아둘 함수 : **alert(), confirm(), prompt()**
 
   - alert() : 메시지만 띄움
@@ -48,4 +44,66 @@ var booleanVar = true;
 var functionVar = function() {};			//함수 선언
 var objectVar = {};							//배열 선언
 ```
+
+
+
+- 형변환 : Casting
+
+  - Number() : 숫자로 변환
+  - String() : 문자열로 변환
+
+  입력받은 문자는 숫자를 입력받는다하더라도 문자열이다. :arrow_right: userData는 string임
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+        let userData = prompt("숫자를 입력하세요.");
+        let result = userData +10 ;
+        console.log("result=" + result);
+        result = Number(userData) +10 ;
+        console.log("result=" + result);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
+```
+
+![](./pic/casting.png)
+
+첫번째 결과는 문자열 뒤에 입력받은 "10"을 붙여넣은거고
+
+두번째 결과는 문자열을 Number()로 형변환 시켜주어서 숫자로 만들어준다.
+
+- 배열
+
+  : javascript의 배열은 고정된 데이터 타입이 아닌 다양한 데이터 타입을 가질 수 있다.
+
+```js
+var array = [273, 'String', true, function () {}, {}, [273,103]];
+```
+
+ -- length() : 배열이 가진 요소갯수를 반환
+
+```js
+let array = [1,2,3,4,5];
+alert(array.length);
+```
+
+출력 : 5
+
+ -- push() : 배열뒤에 데이터 추가
+
+```js
+array.push(6);
+array.push(7);
+alert(array);
+```
+
+출력 : 1,2,3,4,5,6,7
+
+
 
