@@ -1,6 +1,43 @@
 # HTML 시작하기
 
-### html
+### HTML : 웹브라우저에서 실행 가능한 마크업 랭귀지
+
+HTML5 기본 페이지
+
+```html
+<!DOCTYPE html>		//HTML5 표준 선언 문자
+<html>
+<head>		//문서의 선언문, 타입, 참조 문서
+    <title></title>
+</head>
+<body>
+    
+</body>
+</html>
+```
+
+특징 : 
+
+1. 시작 태그가 있으면 끝나는 태그 **반드시** 존재
+
+   (예외: img, input 태그)
+
+2. 태그는 섞일 수 없다.
+
+```html
+<html>
+    <head>
+        <body>
+    </head>
+        </body>
+</html>
+```
+
+이런식으로 중첩하여 사용할 수 없음.
+
+3. javascript는 <script> </script> 안에 넣어준다. script태그는 head나 body 안에 존재할 수 있다.
+
+
 
 - table 생성하기
 
