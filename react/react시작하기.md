@@ -1,5 +1,11 @@
 # React 시작하기
 
+npm start : 개발자모드
+
+npm run : 운영모드
+
+
+
 가장먼저 실행되는 파일은 App.js
 
 
@@ -349,6 +355,168 @@ export default Counter;
 카멜 표기법
 
 함수이름만들때 첫글자를 대문자로 만들때 ex)handleIncrease(), handleDecrease(), handleChangeInfo()
+
+
+
+LifeCycle API
+
+어떤순서대로 실행되는지 확인
+
+
+
+LifeCycle
+
+```js
+import React, {Component}from 'react';
+
+class Counter extends Component {
+    state = {
+        count: 0,
+        info:{
+            name: 'React',
+            age: 10
+        }
+    }
+
+   constructor(props){
+        super(props);
+        //console.log(this.props.init);
+        //this.state.count = this.props.init;
+        console.log('call constructor');
+    }
+    
+    componentDidMount(){
+        console.log('componentDidMount');
+    }
+    shouldComponentUpdate(nextProps, nextState){            //화면에 데이터를 보여줄때 필요없는 화면은 보여주지 않게 하는 함수
+        //5의 배수라면 화면 렌더링 하지 않음
+        console.log('ShouldComponentUpdate');
+        if(nextState.count % 5 === 0 )return false;
+        else return true;
+    }
+    componentWillUpdate(nextProps, nextState){
+        console.log('componentWillUpdate');
+    }
+    componentDidUpdate(prevProps, prevState){
+        console.log('componentDidUpdate');
+    }
+
+
+handleIncrease = ()=>{
+    this.setState({
+        count: this.state.count + 1
+    });
+}
+
+handleDecrease = ()=>{
+    this.setState({
+        count: this.state.count - 1
+    });
+}
+
+handleChangeInfo = () =>{
+
+    this.setState({   
+        info:{
+            ...this.state.info,
+            name: 'Changed'
+        }
+    });
+}
+
+    render(){
+        return (
+            <div>
+                <h1>Counter</h1>
+                <h2>{this.state.count}</h2>
+                <button onClick={this.handleIncrease}>+</button>
+                <button onClick={this.handleDecrease}>-</button>
+                <button onClick={this.handleChangeInfo}>Change info name</button>
+                {this.state.info.name}/{this.state.info.age}
+
+            </div>
+        );
+    }
+}
+export default Counter;
+```
+
+
+
+
+
+**에러내용 안보여주고 싶을때**
+
+counter.js
+
+```js
+import React, {Component}from 'react';
+
+const ErrorObject =() => {
+    throw (new Error('에러 발생'));             //2.
+}
+
+class Counter extends Component {
+
+    state = {
+        count: 0,
+        info:{
+            name: 'React',
+            age: 10
+        },
+        error: true
+    }
+
+    componentDidCatch(error, info){          //에러가 발생하면 실행되는 함수        //3.
+        this.setState({
+            error: true
+        })
+    }
+
+handleIncrease = ()=>{
+    this.setState({
+        count: this.state.count + 1
+    });
+}
+
+handleDecrease = ()=>{
+    this.setState({
+        count: this.state.count - 1
+    });
+}
+
+handleChangeInfo = () =>{
+    this.setState({   
+        info:{
+            ...this.state.info,
+            name: 'Changed'
+        }
+    });
+}
+
+    render(){
+            if(this.state.error)return (<h1> 에러가 발생되었습니다.</h1>);          //4.
+
+        return (
+            <div>
+                <h1>Counter</h1>
+                <h2>{this.state.count}</h2>
+                {this.state.count==3 && <ErrorObject/>}             //1.
+                <button onClick={this.handleIncrease}>+</button>
+                <button onClick={this.handleDecrease}>-</button>
+                <button onClick={this.handleChangeInfo}>Change info name</button>
+                {this.state.info.name}/{this.state.info.age}
+
+            </div>
+        );
+    }
+}
+export default Counter;
+```
+
+1->2->3->4 순서로 함수진행
+
+![](./pic/error.png)
 
 
 
