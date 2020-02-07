@@ -4,7 +4,7 @@ npm start : 개발자모드
 
 npm run : 운영모드
 
-
+[https://create-react-app.dev/docs/getting-started/](참고사이트)
 
 가장먼저 실행되는 파일은 App.js
 
