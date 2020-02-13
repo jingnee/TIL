@@ -1,0 +1,18 @@
+.input-group {
+  margin: 20px 0px;
+}
+
+td, th {
+  vertical-align: bottom !important;      
+  text-align: center !important;          
+}
+
+/* td:first-of-type {
+  height: 200px;
+  width: 250px;
+} */
+
+/* vertical-alighn : 상후 정렬 !는 내가더 중요해(부모 css보다)
+text-align : 좌우 정렬 
+.은 사용자 정의태그(className)
+.없으면 html태그*/
