@@ -338,4 +338,4 @@ export function selectBook(book){
    - mapDispatchToProps(dispatch)
    - connect()함수 사용
      - ex) connect(mapStatetoProps, mapDispatchToProps) (BookList)
-     - ex) connect(mapStatetoProps) (BookDetail)
+     - ex) connect(mapStatetoProps) (BookDetail) 
