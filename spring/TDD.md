@@ -1,4 +1,4 @@
-# JAVA TDD맛보기
+# Spring TDD맛보기
 
 Maven -> pom.xml
 
@@ -198,6 +198,6 @@ URL에 내 레포지토리 주소를 넣어주고
 
 다올려도 상관은 없지만 내가 뺀 항목은 나중에 실행시키면 다시 생성되는 항목들이므로 올릴 파일들을 선택하고
 
-![](C:\Users\HPE\TIL\java\pic\gitpush.png)
+![](./pic/gitpush.png)
 
 Commit 옆에 드롭다운 버튼을 클릭해서 Push&Commit 해준다.
