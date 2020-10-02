@@ -24,28 +24,42 @@ my_str3="""스타벅스
   :grey_exclamation: "string __`%s`__" __`% 'format'`__
 
   ```python
-  //%s는 문자열 대입
+  #%s는 문자열 대입(문자열 외 아무거나 해도 대입됨)
   >>> my_str = 'My name is %s' %'Jingnee'
   >>> my_str
   'My name is Jingnee'
   
-  //%d는 정수 대입
+  #%d는 정수 대입
   >>> "%d %d" % (1,2)
   '1 2'
   
-  //%f는 실수 대입
+  #%f는 실수 대입
   >>> '%f' % 3.14
   '3.140000'
+  
+# 정렬과 공백(전체길이가 10개인 문자열 공간에서 오른쪽 정렬)
+  >>> "%10s" % "hi"
+'        hi'
+  # 전체길이가 10개인 문자열에서 왼쪽 정렬(hi다음에 8칸)
+>>> "%-10sjane." % "hi"
+  'hi        jane.'
+
+  # 소숫점 4자리까지 출력
+>>> "%0.4f" % 3.42134234
+  '3.4213'
+  # 소숫점 4자리까지만 표시하고 전체 길이가 10개인 문자열 공간에서 오른쪽 정렬
+  >>> "%10.4f" % 3.42134234
+  '    3.4213'
   ```
-
+  
   :grey_exclamation: __`'{}'.format()`__
-
+  
   위에서 %s(%d나 %f포함) --> {}
-
+  
   % --> format()
-
+  
   로 바뀐다고 보면 된다.
-
+  
   ```python
   >>> "My name is {}".format('jingnee')
   'My name is jingnee'
@@ -60,6 +74,48 @@ my_str3="""스타벅스
   ```
 
 
+
+- 정렬
+
+  ```python
+  # :<10은 치환되는 문자열을 왼쪽으로 정렬하고 문자열의 총 자릿수를 10으로 맞춤
+  >>> "{:<10}".format("hi")
+  'hi        '
+  
+  # 오른쪽 정럴
+  >>> "{0:>10}".format("hi")
+  '        hi'
+  
+  # 가운데 정렬
+  >>> "{:^10}".format("hi")
+  ```
+
+- 공백 채우기
+
+  ```python
+  >>> "{:=^10}".format("hi")
+  '====hi===='
+  
+  >>> "{0:!<10}".format("hi")
+  'hi!!!!!!!!'
+  ```
+
+
+
+- f문자열 (파이썬 3.6 이상의 버전만 가능)
+
+  ```python
+  >>> name = "홍길동"
+  >>> age=30
+  >>> f"나의 이름은 {name}입니다. 나이는 {age}입니다."
+  '나의 이름은 홍길동입니다. 나이는 30입니다.'
+  
+  # 정렬
+  >>> f"{name:^10}"
+  '   홍길동    '
+  ```
+
+  
 
 - Indexing
 
@@ -131,6 +187,135 @@ my_str3="""스타벅스
   ```
 
 
+
+- string.count() 
+
+  문자열 갯수 세기
+
+  ```python
+  >>> a="hobby"
+  >>> a.count('b')
+  2
+  ```
+
+
+
+- string.find()
+
+  위치 알려주기
+
+  ```python
+  >>> a.find('b')
+  2
+  # 문자열이 존재하지 않는경우 -1 리턴
+  >>> a.find('e')
+  -1
+  ```
+
+- string.index()
+
+  ```python
+  >>> a.index('b')
+  2
+  # 문자열이 존재하지 않는경우 에러 발생
+  >>> a.index('e')
+  Traceback (most recent call last):
+    File "<pyshell#424>", line 1, in <module>
+      a.index('e')
+  ValueError: substring not found
+  ```
+
+
+
+- join()
+
+  문자열 삽입(리스트, 튜플 입력으로도 사용 가능)
+
+  각 문자열 사이에 삽입한다.
+
+  ```python
+  >>> ",".join(a)
+  'h,o,b,b,y'
+  >>> ",".join('abcd')
+  'a,b,c,d'
+  
+  # 리스트의 경우에 ,로 합친 문자열이 됨
+  >>> ",".join(['a','b','c','d'])
+  'a,b,c,d'
+  ```
+
+
+
+- upper()
+
+  소문자->대문자
+
+  ```python
+  >>> a = "hi"
+  >>> a.upper()
+  'HI'
+  ```
+
+- lower()
+
+  대문자->소문자
+
+  ```python
+  >>> a = "HI"
+  >>> a.lower()
+  'hi'
+  ```
+
+
+
+- lstrip()
+
+  왼쪽 공백 지우기
+
+  ```python
+  >>> a = " hi "
+  >>> a.lstrip()
+  'hi '
+  ```
+
+- rstrip()
+
+  오른쪽 공백 지우기
+
+  ```python
+  >>> a= " hi "
+  >>> a.rstrip()
+  ' hi'
+  ```
+
+- strip()
+
+  ```python
+  >>> a = " hi "
+  >>> a.strip()
+  'hi'
+  ```
+
+
+
+- replace
+
+  문자열 바꾸기
+
+  ```python
+  >>> a="Life is too short"
+  >>> a.replace("Life","Your leg")
+  'Your leg is too short'
+  
+  #인덱스로 바꾸는건 안돼
+  >>> a[0]="i"
+  Traceback (most recent call last):
+    File "<pyshell#438>", line 1, in <module>
+      a[0]="i"
+  TypeError: 'str' object does not support item assignment
+  ```
+
+  
 
 - Docstring
 
